@@ -10,10 +10,7 @@ const uploadRoutes = require('./api/routes/uploadRoutes');
 const path = require('path');
 
 // middleware
-app.use(cors({
-  origin: ['http://localhost:5173'],
-  credentials: true
-}));
+app.use(cors())
 app.use(express.json());
 
 //connect to mongoDB config
