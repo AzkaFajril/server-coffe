@@ -11,7 +11,7 @@ const path = require('path');
 
 // middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://server-coffe-production.up.railway.app/'],
+  origin: ['http://localhost:5173'],
   credentials: true
 }));
 app.use(express.json());
@@ -25,13 +25,11 @@ mongoose.connect(process.env.MONGODB_URI)
 });
 
   // jwt authentication
-  app.post('/jwt', async(req, res) => {
+  app.post('/jwt', (req, res) => {
     const user = req.body;
-    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '1hr'
-    })
-    res.send({token});
-  })
+    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
+    res.send({ token });
+  });
 
 
 //   import routes here
